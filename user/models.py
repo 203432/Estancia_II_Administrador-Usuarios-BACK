@@ -5,6 +5,6 @@ from django.contrib.auth.models import User
 
 class TablaProfile(models.Model):
     id_user = models.OneToOneField(User, on_delete=models.CASCADE)
-    url_image = models.ImageField(null=False,blank=True, default='', upload_to='assets/img/')
+    url_image = models.ImageField(null=False,blank=True, default='', upload_to='assets/imgProfile/')
     badges = models.CharField(max_length=1000,null=False)
     experience = models.FloatField(null=False)
