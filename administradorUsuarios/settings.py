@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Componentes agregados
+    'AdministradorRutas',
 
+    
     #Librerias agregadas
     'rest_framework',
     'corsheaders',
@@ -69,13 +71,13 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
+# REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
 
 ROOT_URLCONF = 'administradorUsuarios.urls'
 
@@ -103,8 +105,13 @@ WSGI_APPLICATION = 'administradorUsuarios.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv("ENGINE"),
+        'NAME': os.getenv("NAME"),
+        'USER':os.getenv("USER"),
+        'PASSWORD':os.getenv("PASSWORD"),
+        'HOST':os.getenv("HOST"),
+        'PORT':os.getenv("PORT")
+        
     }
 }
 
