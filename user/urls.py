@@ -9,5 +9,5 @@ from user.views import TablaProfileList
 
 
 urlpatterns = [
-    re_path(r'', TablaProfileList.as_view()),
+    re_path(r'$', TablaProfileList.as_view()),
 ]

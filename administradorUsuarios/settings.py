@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     #Componentes agregados
     'user',
+    'badges',
 
     #Librerias agregadas
     'rest_framework',
