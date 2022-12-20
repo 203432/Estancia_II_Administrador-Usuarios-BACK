@@ -45,7 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Componentes agregados
+
     'AdministradorRutas',
+    'user',
+    'badges',
+
 
     
     #Librerias agregadas
@@ -75,7 +79,7 @@ CORS_ALLOWED_ORIGINS = [
 #     # Use Django's standard `django.contrib.auth` permissions,
 #     # or allow read-only access for unauthenticated users.
 #     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#         'rest_framework.permissions.DjangoModelPermissions',
 #     ]
 # }
 
@@ -107,11 +111,10 @@ DATABASES = {
     'default': {
         'ENGINE': os.getenv("ENGINE"),
         'NAME': os.getenv("NAME"),
-        'USER':os.getenv("USER"),
-        'PASSWORD':os.getenv("PASSWORD"),
-        'HOST':os.getenv("HOST"),
-        'PORT':os.getenv("PORT")
-        
+        'USER': os.getenv("USER"),
+        'PASSWORD': os.getenv("PASSWORD"),
+        'HOST': os.getenv("HOST"),
+        'PORT': os.getenv("PORT")
     }
 }
 
@@ -151,6 +154,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'assets')
+
+MEDIA_URL = '/assets/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
