@@ -45,9 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #Componentes agregados
+
+    'AdministradorRutas',
     'user',
     'badges',
 
+
+    
     #Librerias agregadas
     'rest_framework',
     'corsheaders',
