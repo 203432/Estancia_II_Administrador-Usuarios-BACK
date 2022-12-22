@@ -127,6 +127,9 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.keys
+cert.crt
+cert.key
 
 # Spyder project settings
 .spyderproject
