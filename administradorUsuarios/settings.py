@@ -55,6 +55,22 @@ INSTALLED_APPS = [
     #Librerias agregadas
     'rest_framework',
     'corsheaders',
+
+    #Librerias agregadas para el login
+    'rest_framework.authtoken',
+
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.apple',
+
+    'django_extensions',
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -65,6 +81,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     
     #Middleware del cors-headers
     'corsheaders.middleware.CorsMiddleware',
@@ -75,13 +93,13 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
-# REST_FRAMEWORK = {
-#     # Use Django's standard `django.contrib.auth` permissions,
-#     # or allow read-only access for unauthenticated users.
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.DjangoModelPermissions',
-#     ]
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+
+}
 
 ROOT_URLCONF = 'administradorUsuarios.urls'
 
@@ -163,3 +181,54 @@ MEDIA_URL = '/assets/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APP": {
+            "client_id": os.getenv("client_id_google"),
+            "secret": os.getenv("secret_google"),
+            "key": ""
+        },
+
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    },
+    'facebook': {
+        "APP": {
+            "client_id": os.getenv("client_id_facebook"),
+            "secret": os.getenv("secret_facebook"),
+            "key": ""
+        },
+        'METHOD': 'oauth2',
+        'SCOPE': [
+            'email',
+            'public_profile',
+        ],
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+        ],
+    },
+    "apple": {
+        "APP": {
+            "client_id": os.getenv("client_id_apple"),
+            "secret": os.getenv("secret_apple"),
+            "key": ""
+        },
+    },
+}
+
+INTERNAL_IPS = [
+    os.getenv("INTERNAL_IPS"),
+]
