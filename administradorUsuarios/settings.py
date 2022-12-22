@@ -16,6 +16,11 @@ import os
 
 load_dotenv(find_dotenv(".keys"))
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# EJECUTEN EL PROYECTO CON ESTO PARA HACER LAS PETICIONES A GOOGLE Y FACEBBOK (HTTPS)
+# py manage.py runserver_plus --cert-file cert.crt
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
