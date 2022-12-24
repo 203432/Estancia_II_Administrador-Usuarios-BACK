@@ -10,19 +10,26 @@ import urllib.parse
 from django.shortcuts import redirect
 from django.urls import reverse
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+from rest_framework.decorators import authentication_classes, permission_classes
+
 # Google
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
     callback_url = "https://izlight.org:8000/api/v1/auth/google/callback/"
     client_class = OAuth2Client
     
-    # @property
-    # def callback_url(self, request, *args, **kwargs):
-    # 	return self.request.build_absolute_uri(reverse('google_callback'))
-
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def google_callback(request, *args, **kwargs):
-    params = urllib.parse.urlencode(request.GET)
-    return redirect(f'https://izlight.org:8000/google/{params}') #front url
+    code = request.GET
+    # params = urllib.parse.urlencode(request.GET)
+    return Response(code['code'], status=status.HTTP_200_OK)
+    # return redirect(f'https://izlight.org:8000/google/{params}') #front url
 
 # Facebook
 class FacebookLogin(SocialLoginView):
@@ -30,13 +37,14 @@ class FacebookLogin(SocialLoginView):
     callback_url = "https://izlight.org:8000/api/v1/auth/facebook/callback/"
     client_class = OAuth2Client
     
-    # @property
-    # def callback_url(self, request, *args, **kwargs):
-    # 	return self.request.build_absolute_uri(reverse('facebook_callback'))
-
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def facebook_callback(request, *args, **kwargs):
-    params = urllib.parse.urlencode(request.GET)
-    return redirect(f'https://izlight.org:8000/facebook/{params}') #front url
+    code = request.GET
+    # params = urllib.parse.urlencode(request.GET)
+    return Response(code['code'], status=status.HTTP_200_OK)
+    # return redirect(f'https://izlight.org:8000/facebook/{params}') #front url
 
 # Apple PENDIENTE
 class AppleLogin(SocialLoginView):
@@ -47,6 +55,11 @@ class AppleLogin(SocialLoginView):
     def callback_url(self, request, *args, **kwargs):
     	return self.request.build_absolute_uri(reverse('apple_callback'))
 
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
 def apple_callback(request, *args, **kwargs):
-    params = urllib.parse.urlencode(request.GET)
-    return redirect(f'https://izlight.org:8000/apple/{params}') #front url
+    code = request.GET
+    # params = urllib.parse.urlencode(request.GET)
+    return Response(code['code'], status=status.HTTP_200_OK)
+    # return redirect(f'https://izlight.org:8000/apple/{params}') #front url
