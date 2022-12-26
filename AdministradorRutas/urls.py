@@ -1,8 +1,8 @@
 from django.urls import path, re_path
 from django.conf.urls import include
 
-from AdministradorRutas.views import routesList
-from AdministradorRutas.views import routesDetail
+from AdministradorRutas.views.routes_list_views import routesList
+from AdministradorRutas.views.routes_detail_views import routesDetail
 
 urlpatterns = [
     re_path(r'$', routesList.as_view()),
