@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import include, path
-from auth_user.views import GoogleLogin, google_callback, FacebookLogin, facebook_callback, AppleLogin, apple_callback
+from auth_user.views.google_login_views import GoogleLogin, google_callback
+from auth_user.views.facebook_login_views import FacebookLogin, facebook_callback
+from auth_user.views.apple_login_views import AppleLogin, apple_callback
 from allauth.socialaccount.providers.google import views as google_views
 from allauth.socialaccount.providers.facebook import views as facebook_views
 from allauth.socialaccount.providers.apple import views as apple_views
