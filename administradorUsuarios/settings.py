@@ -195,6 +195,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'auth_user.serializers.CustomRegisterSerializer'
+}
+
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
